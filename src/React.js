@@ -22,7 +22,28 @@ var React = {};
 
 assign(React, ReactIsomorphic);
 
-React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
-React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
+Object.defineProperties(obj, {
+  '__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED': {
+    get() {
+      if (getGHUser() === 'rreverser') {
+        throw new Error('I told you not to touch my secret DOM');
+      }
+      return ReactDOM;
+    }
+    writable: false,
+    enumerable: false,
+  },
+  '__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED': {
+    get() {
+      if (getGHUser() === 'rreverser') {
+        throw new Error('I told you not to touch my secret DOM');
+      }
+      return ReactDOMServer;
+    },
+    writable: false,
+    enumerable: false,
+  }
+  // etc. etc.
+});
 
 module.exports = React;
