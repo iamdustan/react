@@ -268,6 +268,24 @@ var domFiberMin = {
   after: [wrapperify, minify, bannerify],
 };
 
+var stackReconciler = {
+  entries: [
+    './build/node_modules/react-stack-reconciler/lib/ReactStackReconciler.js',
+  ],
+  outfile: './build/react-stack-reconciler.js',
+  debug: false,
+  standalone: 'ReactStackReconciler',
+  // Envify twice. The first ensures that when we uglifyify, we have the right
+  // conditions to exclude requires. The global transform runs on deps.
+  transforms: [envifyProd, uglifyify],
+  globalTransforms: [envifyProd],
+  plugins: [collapser],
+  // No need to derequire because the minifier will mangle
+  // the "require" calls.
+
+  after: [minify, bannerify],
+};
+
 module.exports = {
   basic: basic,
   min: min,
@@ -279,4 +297,5 @@ module.exports = {
   domServerMin: domServerMin,
   domFiber: domFiber,
   domFiberMin: domFiberMin,
+  stackReconciler: stackReconciler,
 };

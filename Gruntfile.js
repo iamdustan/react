@@ -90,6 +90,10 @@ module.exports = function(grunt) {
   grunt.registerTask('npm-react-addons:release', npmReactAddonsTasks.buildReleases);
   grunt.registerTask('npm-react-addons:pack', npmReactAddonsTasks.packReleases);
 
+  var npmReactStackReconcilerTasks = require('./grunt/tasks/npm-react-stack-reconciler');
+  grunt.registerTask('npm-react-stack-reconciler:release', npmReactStackReconcilerTasks.buildRelease);
+  grunt.registerTask('npm-react-stack-reconciler:pack', npmReactStackReconcilerTasks.packRelease);
+
   var npmReactTestRendererTasks = require('./grunt/tasks/npm-react-test');
   grunt.registerTask('npm-react-test:release', npmReactTestRendererTasks.buildRelease);
   grunt.registerTask('npm-react-test:pack', npmReactTestRendererTasks.packRelease);
@@ -147,6 +151,11 @@ module.exports = function(grunt) {
     'version-check',
     'browserify:domFiberMin',
   ]);
+  grunt.registerTask('build:stack-reconciler', [
+    'build-modules',
+    'version-check',
+    'browserify:stackReconciler',
+  ]);
   grunt.registerTask('build:npm-react', [
     'version-check',
     'build-modules',
@@ -176,6 +185,7 @@ module.exports = function(grunt) {
     'browserify:domServerMin',
     'browserify:domFiber',
     'browserify:domFiberMin',
+    'browserify:stackReconciler',
     'npm-react:release',
     'npm-react:pack',
     'npm-react-dom:release',
@@ -184,6 +194,8 @@ module.exports = function(grunt) {
     'npm-react-native:pack',
     'npm-react-addons:release',
     'npm-react-addons:pack',
+    'npm-react-stack-reconciler:release',
+    'npm-react-stack-reconciler:pack',
     'npm-react-test:release',
     'npm-react-test:pack',
     'compare_size',

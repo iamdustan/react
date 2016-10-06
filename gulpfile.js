@@ -77,6 +77,21 @@ var paths = {
     ],
     lib: 'build/node_modules/react-native/lib',
   },
+  reactStackReconciler: {
+    src: [
+      'src/renderers/shared/stack/ReactStackReconciler.js',
+      'src/renderers/shared/**/*.js',
+      'src/isomorphic/**/*.js',
+
+      'src/ReactVersion.js',
+      'src/shared/**/*.js',
+      '!src/shared/vendor/**/*.js',
+      '!src/**/__benchmarks__/**/*.js',
+      '!src/**/__tests__/**/*.js',
+      '!src/**/__mocks__/**/*.js',
+    ],
+    lib: 'build/node_modules/react-stack-reconciler/lib',
+  },
   reactTestRenderer: {
     src: [
       'src/renderers/testing/**/*.js',
@@ -215,6 +230,12 @@ gulp.task('react:modules', function() {
       .pipe(babel(babelOptsReactNative))
       .pipe(flatten())
       .pipe(gulp.dest(paths.reactNative.lib)),
+
+    gulp
+      .src(paths.reactStackReconciler.src)
+      .pipe(babel(babelOptsReact))
+      .pipe(flatten())
+      .pipe(gulp.dest(paths.reactStackReconciler.lib)),
 
     gulp
       .src(paths.reactTestRenderer.src)
