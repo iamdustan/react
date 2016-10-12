@@ -14,8 +14,10 @@
 
 var warning = require('warning');
 
+var ReactGenericInjection = require('ReactGenericInjection');
 var ReactReconciler = require('ReactReconciler');
 var ReactInstanceMap = require('ReactInstanceMap');
+var ReactGenericInjection = require('ReactGenericInjection');
 var ReactInstrumentation = require('ReactInstrumentation');
 var ReactUpdates = require('ReactUpdates');
 var ReactUpdateQueue = require('ReactUpdateQueue');
@@ -35,6 +37,7 @@ var ReactStackReconciler = {
 
   ReactReconciler: ReactReconciler,
   ReactInstanceMap: ReactInstanceMap,
+  ReactInjection: ReactGenericInjection,
   ReactInstrumentation: ReactInstrumentation,
   ReactUpdates: ReactUpdates,
   ReactUpdateQueue: ReactUpdateQueue,

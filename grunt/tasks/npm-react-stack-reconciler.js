@@ -39,7 +39,6 @@ function packRelease() {
       cwd: 'build/',
     },
   };
-  console.log(spawnCmd);
   grunt.util.spawn(spawnCmd, function() {
     var buildSrc = 'build/react-stack-reconciler-' + grunt.config.data.pkg.version + '.tgz';
     var buildDest = 'build/packages/react-stack-reconciler.tgz';

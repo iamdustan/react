@@ -82,6 +82,7 @@ var paths = {
       'src/renderers/shared/stack/ReactStackReconciler.js',
       'src/renderers/shared/**/*.js',
       'src/isomorphic/**/*.js',
+      'src/renderers/native/ReactNativeReconcileTransaction.js',
 
       'src/ReactVersion.js',
       'src/shared/**/*.js',
@@ -187,6 +188,14 @@ var babelOptsReactNative = {
   ],
 };
 
+var babelOptsReactStackReconciler = {
+  plugins: [
+    devExpressionWithCodes, // this pass has to run before `rewrite-modules`
+    [babelPluginModules, {map: moduleMapReactDOM}],
+  ],
+};
+
+
 var babelOptsReactTestRenderer = {
   plugins: [
     devExpressionWithCodes, // this pass has to run before `rewrite-modules`
@@ -233,7 +242,7 @@ gulp.task('react:modules', function() {
 
     gulp
       .src(paths.reactStackReconciler.src)
-      .pipe(babel(babelOptsReact))
+      .pipe(babel(babelOptsReactStackReconciler))
       .pipe(flatten())
       .pipe(gulp.dest(paths.reactStackReconciler.lib)),
 
