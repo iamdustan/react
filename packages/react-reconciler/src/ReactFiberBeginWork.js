@@ -195,6 +195,9 @@ export default function<T, P, I, TI, PI, C, CC, CX, PL>(
       }
       // TODO: consider bringing fn.shouldComponentUpdate() back.
       // It used to be here.
+      if (!fn.shouldComponentUpdate(workInProgress.memoizedProps, props)) {
+        return bailoutOnAlreadyFinishedWork(current, workInProgress);
+      }
     }
 
     var unmaskedContext = getUnmaskedContext(workInProgress);
